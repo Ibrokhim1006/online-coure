@@ -10,9 +10,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Online Education",
+      title="1Online Education",
       default_version='v 1.0.0',
-      description="Online Education API",
+      description="1Online Education API",
       terms_of_service="https://crud-app.prounity.uz/api/swagger/",
       contact=openapi.Contact(email="istamovibrohim8@gmail.com"),
       license=openapi.License(name="BSD License"),
