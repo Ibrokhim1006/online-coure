@@ -7,7 +7,9 @@ from authen.views import (
     RequestPasswordRestEmail,
     SetNewPasswordView,
     UserGroupsView,
-    StudentGroupView
+    StudentGroupView,
+    login,
+    register,
 )
 
 urlpatterns = [
@@ -19,5 +21,8 @@ urlpatterns = [
     path('password/new/', SetNewPasswordView.as_view()),
     path('user/roll', UserGroupsView.as_view()),
     path('user/class_name/', StudentGroupView.as_view()),
+
+    path('', login, name='login'),
+    path('registers/', register, name='register')
 
 ]

@@ -1,4 +1,5 @@
 from drf_yasg.utils import swagger_auto_schema
+from django.shortcuts import render
 
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.auth import authenticate
@@ -40,6 +41,25 @@ from authen.serializers import (
     ResetPasswordSerializer,
     PasswordResetCompleteSerializer,
 )
+
+
+
+def login(request):
+    return render(request, 'login.html')
+
+
+def register(request):
+    context = {}
+    context['user_group'] = GroupUser.objects.all().order_by('id')
+    context['groups'] = Group.objects.all()
+    return render(request, 'register.html', context)
+
+
+
+
+
+
+
 
 
 
