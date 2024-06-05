@@ -18,6 +18,7 @@
   <body>
     
     <form class="border p-4 rounded" style="width: 400px;" method="post">
+      <h4 class="text-danger">{{error}}</h4>
         {% csrf_token %}
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Имя пользователя</label>

@@ -1,0 +1,38 @@
+{% extends  'base.html' %}
+
+{% block title %} <title>Добавить курс</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        <h4>Добавить курс</h4>
+        <div class="card p-3">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="language" class="form-label">Выбор языка</label>
+                  <select class="form-select" aria-label="Default select example" id="language" name="language">
+                    <option selected>Выбор языка</option>
+                    {% for item in language %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Название курса</label>
+                  <input type="name" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Описание </label>
+                    <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+                  </div>
+                <button type="submit" class="btn btn-primary">Добавлять</button>
+              </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

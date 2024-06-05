@@ -1,0 +1,38 @@
+{% extends  'base.html' %}
+
+{% block title %} <title>Добавить модуль</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        <h4>Добавить модуль</h4>
+        <div class="card p-3">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="course" class="form-label">Выбор курса</label>
+                  <select class="form-select" aria-label="Default select example" id="language" name="course">
+                    <option selected>Выбор курса</option>
+                    {% for item in course %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Имя модуля</label>
+                  <input type="name" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Описание </label>
+                    <textarea name="content" class="form-control" id="content" cols="30" rows="10"></textarea>
+                  </div>
+                <button type="submit" class="btn btn-primary">Добавлять</button>
+              </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

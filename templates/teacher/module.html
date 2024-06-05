@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} <title>Модули</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        <h4>Модули</h4>
+        <a href="{% url 'add_module' %}" class="btn btn-primary">Добавить модуль</a>
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col" style="width: 5%;">#</th>
+                    <th scope="col" style="width: 20%;">Имя модуля</th>
+                    <th scope="col" style="width: 10%;">Язык и курс</th>
+                    <th scope="col" style="width: 50;">Описание </th>
+                    <th scope="col" style="width: 5%;">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in objects_list %}
+                <tr class="text-center">
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <p>язык: {{item.course.language}}</p>
+                        <p>курс: {{item.course}}</p>
+                    </td>
+                    <td>{{item.content}}</td>
+                    <td></td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock %}
