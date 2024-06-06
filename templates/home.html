@@ -5,6 +5,35 @@
 
 {% block content %}
 
+{% for group in request.user.groups.all %}
+    {% if group.name == 'student' %}
+    <div class="row justify-content-center mt-4">
+        <div class="col-lg-10">
+            <h4>Все курсы</h4>
+            {% for item in language %}
+            <p class="d-inline-flex gap-1 mt-2">
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample{{item.id}}" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{item.name}}</a>
+              </p>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="collapse multi-collapse" id="multiCollapseExample{{item.id}}">
+                    <div class="card card-body">
+                      {% for lesson in item.lang.all %}
+                        <p>{{forloop.counter}}. <a href="{% url 'deteile_course' item.id %}">{{lesson.name}}</a></p>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% else %}
+
+    {% endif %}
+
+{% endfor %}
 
 
 {% endblock %}

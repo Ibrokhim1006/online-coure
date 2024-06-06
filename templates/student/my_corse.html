@@ -1,0 +1,38 @@
+{% extends  'base.html' %}
+
+{% block title %} <title>Мои курсы</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        
+        {% for item in module %}
+        <h4>{{item.course}}</h4>
+        {%  for module in item.course.cours.all %}
+        <p class="d-inline-flex gap-1  mt-2">
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample{{module.id}}" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{module.name}}</a>
+          </p>
+          <div class="row">
+            <div class="col">
+              <div class="collapse multi-collapse" id="multiCollapseExample{{module.id}}">
+                <div class="card card-body">
+                    {% for lesson in module.lessons.all %}
+                        <p>{{forloop.counter}}-Урок:   {{lesson.name}}</p>
+                        <p><a href="{{ lesson.files.url }}" download="{{ lesson.files}}files.png">{{lesson.files}}</a></p>
+                        <p><a href="{{ lesson.videos.url }}" download="{{ lesson.videos}}videos.png">{{lesson.videos}}</a></p>
+                    {% endfor %}
+                    <a href="{% url 'test_student' module.id %}" class="btn btn-primary">Начать тест</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

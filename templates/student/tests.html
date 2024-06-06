@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}<title>Тест</title>{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        <h4>Тест</h4>
+        <div class="card p-3">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for item in tests %}
+                <div class="mb-3">
+                    <p><h4>{{forloop.counter}}. {{item.name}}</h4></p>
+                    {% for option in item.choice.all %}
+                    <input class="form-check-input" type="checkbox" name="question_{{ item.id }}_choices" value="{{ option.id }}" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        {{ option.text }}
+                    </label>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Добавлять</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -11,3 +11,4 @@ class GroupUser(models.Model):
 
 class CustomUser(AbstractUser):
     id_group = models.ForeignKey(GroupUser, on_delete=models.CASCADE, null=True, blank=True)
+    ball = models.CharField(max_length=250, null=True, blank=True)

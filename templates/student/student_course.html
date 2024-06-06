@@ -1,0 +1,23 @@
+{% extends  'base.html' %}
+
+{% block title %} <title>Мои курсы</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        <h4>Мои курсы</h4>
+        {% for item in course %}
+        <ul class="list-group mt-3">
+            <li class="list-group-item active" aria-current="true">
+                <a href="{% url 'my_course' item.course.id %}" style="color: #fff;" class="nav-link">{{ item.course.name }}</a>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -12,7 +12,7 @@ class Languages(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=250)
     content = models.TextField()
-    language = models.ForeignKey(Languages, on_delete=models.CASCADE)
+    language = models.ForeignKey(Languages, on_delete=models.CASCADE, related_name="lang")
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -22,7 +22,7 @@ class Course(models.Model):
 class CourseModul(models.Model):
     name = models.CharField(max_length=250)
     content = models.TextField()
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="cours")
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
 
 
@@ -30,7 +30,7 @@ class Lesson(models.Model):
     name = models.CharField(max_length=250)
     files = models.FileField(upload_to='files', null=True, blank=True)
     videos = models.FileField(upload_to='video', null=True, blank=True)
-    model = models.ForeignKey(CourseModul, on_delete=models.CASCADE)
+    model = models.ForeignKey(CourseModul, on_delete=models.CASCADE, related_name="lessons")
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
 
 
@@ -51,3 +51,15 @@ class QuizChoice(models.Model):
 
     def __str__(self):
         return self.text
+    
+
+class CourseStudent(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
+    student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+
+
+class UserTest(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    selected_options = models.ManyToManyField(QuizChoice)
+    

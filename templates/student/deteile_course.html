@@ -1,0 +1,34 @@
+{% extends  'base.html' %}
+
+{% block title %} <title>Курсы</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        <h4>Курсы</h4>
+        {% for course_item in course %}
+        <ul class="list-group mt-3">
+            <li class="list-group-item active" aria-current="true">{{ course_item.name }}</li>
+            {% for module in course_item.cours.all %}
+                {% if not module.name %}
+                    <li class="list-group-item">Модуль курса недоступен.</li>
+                {% else %}
+                    <li class="list-group-item">{{ module.name }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% if has_joined %}
+            <p>Вы уже присоединились к этому курсу. Продолжайте расти!</p>
+        {% else %}
+            <a href="{% url 'add_student_course' course_item.id %}">Присоединяйтесь к курсу</a>
+        {% endif %}
+        {% endfor %}
+        
+    </div>
+</div>
+
+
+
+{% endblock %}

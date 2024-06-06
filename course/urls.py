@@ -21,6 +21,13 @@ urlpatterns = [
     path('module_test/<int:pk>/', module_test, name='module_test'),
     path('add_test/<int:pk>/', add_test, name='add_test'),
     path('lesson_teacher/', lesson_teacher, name='lesson_teacher'),
-    path('add_lesson/', add_lesson, name='add_lesson')
+    path('add_lesson/', add_lesson, name='add_lesson'),
+
+    # student
+    path('deteile_course/<int:pk>/', deteile_course, name="deteile_course"),
+    path('course_student/', course_student, name='course_student'),
+    path('add_student_course/<int:pk>/', add_student_course, name='add_student_course'),
+    path('my_course/<int:pk>/', my_course, name='my_course'),
+    path('test_student/<int:pk>/', test_student, name='test_student'),
 
 ]
