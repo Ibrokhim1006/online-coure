@@ -156,8 +156,8 @@ def test_student(request, pk):
 
         for quiz in context['tests']:
             selected_options = request.POST.getlist(f'question_{quiz.id}_choices')
-            correct_options = quiz.choice.filter(is_correct=True).values_list('id', flat=True)
-            score = sum([5 for option in selected_options if str(option) in correct_options])
+            correct_options = list(quiz.choice.filter(is_correct=True).values_list('id', flat=True))
+            score = sum([5 for option in selected_options if int(option) in correct_options])
             total_score += score
 
             # Get or create UserTest for the current user and quiz
@@ -169,14 +169,16 @@ def test_student(request, pk):
                 user_test = UserTest.objects.create(user_id=user_id, quiz=quiz)
 
             user_test.selected_options.add(*selected_options)
-
+        
+        print(f'Total score: {total_score}')  # Debugging statement
         # Update user's total score in the profile
         user_profile = CustomUser.objects.filter(id=user_id).first()
         if user_profile:
             user_profile.ball = total_score
             user_profile.save()
 
+        context['total_score'] = total_score
         messages.success(request, f'Your total score: {total_score}')
-        return redirect("user_profile")
+        return render(request, 'student/result.html', context)
 
     return render(request, 'student/tests.html', context)

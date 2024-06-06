@@ -13,8 +13,7 @@
               <h4>Привет {{request.user.first_name}}</h4>
               {% for group in request.user.groups.all %}
                 {% if group.name == 'student' %}
-                    <p>Курс: {{request.user.first_name}}</p>
-                    <p>Итог: {{request.user.first_name}} баллов</p>
+                    <p>Итог: {{request.user.ball}} баллов</p>
                 {% endif %}
               {% endfor %}
             </div>
