@@ -15,8 +15,8 @@
                     <th scope="col" style="width: 5%;">#</th>
                     <th scope="col" style="width: 20%;">Имя модуля</th>
                     <th scope="col" style="width: 10%;">Язык и курс</th>
-                    <th scope="col" style="width: 50;">Описание </th>
-                    <th scope="col" style="width: 5%;">Handle</th>
+                    <th scope="col" style="width: 30;">Описание </th>
+                    <th scope="col" style="width: 10%;">Handle</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,7 +29,10 @@
                         <p>курс: {{item.course}}</p>
                     </td>
                     <td>{{item.content}}</td>
-                    <td></td>
+                    <td>
+                        <p><a href="{% url 'add_test' item.id %}">Добавить тест</a></p>
+                        <p><a href="{% url 'module_test' item.id %}">Тесты</a></p>
+                    </td>
 
                 </tr>
                 {% endfor %}

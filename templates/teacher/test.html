@@ -1,0 +1,31 @@
+{% extends  'base.html' %}
+
+{% block title %} <title>Тесты</title> {% endblock %}
+
+
+{% block content %}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-lg-10">
+        {% for item in test %}
+        <div class="list-group mt-2">
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+              {{forloop.counter}}.  {{item.name}}
+            </a>
+            {% for choise in item.choice.all %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked{{ choise.id }}" {% if choise.is_correct %}checked{% endif %}>
+                <label class="form-check-label" for="flexCheckChecked{{ choise.id }}">
+                  {{ choise.text }}
+                </label>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+{% endblock %}

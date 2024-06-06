@@ -33,3 +33,21 @@ class Lesson(models.Model):
     model = models.ForeignKey(CourseModul, on_delete=models.CASCADE)
     owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
 
+
+
+class Quiz(models.Model):
+    name = models.CharField(max_length=250)
+    module = models.ForeignKey(CourseModul, on_delete=models.CASCADE)
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class QuizChoice(models.Model):
+    question = models.ForeignKey(Quiz, on_delete=models.CASCADE, null=True, blank=True, related_name="choice")
+    text = models.CharField(max_length=255)
+    is_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.text

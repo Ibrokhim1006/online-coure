@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'drf_yasg',
     'authen',
     'course',
-    'quiz',
 
 ]
 
