@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from course.models import Course, Languages, CourseModul
+from course.models import Course, Languages, CourseModul, Lesson
 
 
 @login_required
@@ -49,3 +49,35 @@ def add_module(request):
             CourseModul.objects.create(name=name, content=content, course=course, owner=request.user)
             return redirect('module_teacher')
     return render(request, 'teacher/add_module.html', context)
+
+
+@login_required
+def lesson_teacher(request):
+    context = {}
+    context['objects_list'] = Lesson.objects.filter(owner=request.user)
+    return render(request, 'teacher/lessons.html', context)
+
+
+@login_required
+def add_lesson(request):
+    context = {}
+    context['modul'] = CourseModul.objects.filter(owner=request.user)
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        module_id = request.POST.get('model')
+        
+        files = request.FILES.get('files')
+        videos = request.FILES.get('videos')
+        print(videos)
+        if name and module_id and (files or videos):
+            module = CourseModul.objects.get(id=module_id, owner=request.user)
+            lesson = Lesson.objects.create(
+                name=name,
+                model=module,
+                files=files,
+                videos=videos,
+                owner=request.user
+            )
+            return redirect('lesson_teacher')
+    return render(request, 'teacher/add_lesson.html', context)

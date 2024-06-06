@@ -18,5 +18,7 @@ urlpatterns = [
     path('add_course/', add_course, name='add_course'),
     path('module_teacher/', modul_teacher, name='module_teacher'),
     path('add_module/', add_module, name='add_module'),
+    path('lesson_teacher/', lesson_teacher, name='lesson_teacher'),
+    path('add_lesson/', add_lesson, name='add_lesson')
 
 ]
