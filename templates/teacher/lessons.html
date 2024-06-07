@@ -28,16 +28,14 @@
                     <td>
 
                         {% if item.files %}
-                        <a href="{{ item.files.url }}" download="{{ item.files.name }}files.png">{{ item.files.name
-                            }}</a>
+                        <a href="{{ item.files.url }}" download="{{ item.files.name }}files.png">{{ item.files.name}}</a>
                         {% else %}
                         No file available
                         {% endif %}
                     </td>
                     <td>
                         {% if item.videos %}
-                        <a href="{{ item.videos.url }}" download="{{ item.videos.name }}videos.png">{{ item.videos.name
-                            }}</a>
+                        <a href="{{ item.videos.url }}" download="{{ item.videos.name }}videos.png">{{ item.videos.name}}</a>
                         {% else %}
                         No video available
                         {% endif %}
