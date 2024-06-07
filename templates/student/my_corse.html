@@ -20,8 +20,16 @@
                 <div class="card card-body">
                     {% for lesson in module.lessons.all %}
                         <p>{{forloop.counter}}-Урок:   {{lesson.name}}</p>
-                        <p><a href="{{ lesson.files.url }}" download="{{ lesson.files}}files.png">{{lesson.files}}</a></p>
-                        <p><a href="{{ lesson.videos.url }}" download="{{ lesson.videos}}videos.png">{{lesson.videos}}</a></p>
+                        <p>{% if item.files %}
+                          <a href="{{ item.files.url }}" download="{{ item.files.name }}files.png">{{ item.files.name}}</a>
+                          {% else %}
+                          No file available
+                          {% endif %}</p>
+                        <p>{% if item.videos %}
+                          <a href="{{ item.videos.url }}" download="{{ item.videos.name }}videos.png">{{ item.videos.name}}</a>
+                          {% else %}
+                          No video available
+                          {% endif %</p>
                     {% endfor %}
                     <a href="{% url 'test_student' module.id %}" class="btn btn-primary">Начать тест</a>
                 </div>
