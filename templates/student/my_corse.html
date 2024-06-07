@@ -20,7 +20,7 @@
                 <div class="card card-body">
                     {% for lesson in module.lessons.all %}
                         <p>{{forloop.counter}}-Урок:   {{lesson.name}}</p>
-                        <p>{% if item.files %}
+                        <p>{% if lesson.files %}
                           <a href="{{ lesson.files.url }}" download="{{ lesson.files.name }}files.png">{{ lesson.files.name}}</a>
                           {% else %}
                           No file available
