@@ -19,7 +19,7 @@
                   <div class="collapse multi-collapse" id="multiCollapseExample{{item.id}}">
                     <div class="card card-body">
                       {% for lesson in item.lang.all %}
-                        <p>{{forloop.counter}}. <a href="{% url 'deteile_course' item.id %}">{{lesson.name}}</a></p>
+                        <p>{{forloop.counter}}. <a href="{% url 'deteile_course' lesson.id %}">{{lesson.name}}</a></p>
                       {% endfor %}
                     </div>
                   </div>

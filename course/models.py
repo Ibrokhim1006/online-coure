@@ -57,6 +57,9 @@ class CourseStudent(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.student} - {self.course}"
+
 
 class UserTest(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
