@@ -26,9 +26,22 @@
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{item.name}}</td>
                     <td>
-                        <a href="{{ item.files.url }}" download="{{ item.files}}files.png">{{item.files}}</a>
+
+                        {% if item.files %}
+                        <a href="{{ item.files.url }}" download="{{ item.files.name }}files.png">{{ item.files.name
+                            }}</a>
+                        {% else %}
+                        No file available
+                        {% endif %}
                     </td>
-                    <td><a href="{{ item.videos.url }}" download="{{ item.videos}}videos.png">{{item.videos}}</a></td>
+                    <td>
+                        {% if item.videos %}
+                        <a href="{{ item.videos.url }}" download="{{ item.videos.name }}videos.png">{{ item.videos.name
+                            }}</a>
+                        {% else %}
+                        No video available
+                        {% endif %}
+                    </td>
                     <td>{{item.model.name}}</td>
 
                 </tr>
