@@ -21,12 +21,12 @@
                     {% for lesson in module.lessons.all %}
                         <p>{{forloop.counter}}-Урок:   {{lesson.name}}</p>
                         <p>{% if item.files %}
-                          <a href="{{ item.files.url }}" download="{{ item.files.name }}files.png">{{ item.files.name}}</a>
+                          <a href="{{ lesson.files.url }}" download="{{ lesson.files.name }}files.png">{{ lesson.files.name}}</a>
                           {% else %}
                           No file available
                           {% endif %}</p>
-                        <p>{% if item.videos %}
-                          <a href="{{ item.videos.url }}" download="{{ item.videos.name }}videos.png">{{ item.videos.name}}</a>
+                        <p>{% if lesson.videos %}
+                          <a href="{{ lesson.videos.url }}" download="{{ lesson.videos.name }}videos.png">{{ lesson.videos.name}}</a>
                           {% else %}
                           No video available
                           {% endif %</p>
