@@ -6,39 +6,44 @@
 {% block content %}
 
 <div class="row justify-content-center mt-4">
-    <div class="col-lg-10">
-        
-        {% for item in module %}
-        <h4>{{item.course}}</h4>
-        {%  for module in item.course.cours.all %}
-        <p class="d-inline-flex gap-1  mt-2">
-            <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample{{module.id}}" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{module.name}}</a>
-          </p>
-          <div class="row">
-            <div class="col">
-              <div class="collapse multi-collapse" id="multiCollapseExample{{module.id}}">
-                <div class="card card-body">
-                    {% for lesson in module.lessons.all %}
-                        <p>{{forloop.counter}}-Урок:   {{lesson.name}}</p>
-                        <p>{% if lesson.files %}
-                          <a href="{{ lesson.files.url }}" download="{{ lesson.files.name }}files.png">{{ lesson.files.name}}</a>
-                          {% else %}
-                          No file available
-                          {% endif %}</p>
-                        <p>{% if lesson.videos %}
-                          <a href="{{ lesson.videos.url }}" download="{{ lesson.videos.name }}videos.png">{{ lesson.videos.name}}</a>
-                          {% else %}
-                          No video available
-                          {% endif %</p>
-                    <a href="{% url 'test_student' module.id %}" class="btn btn-primary">Начать тест</a>
-                </div>
+  <div class="col-lg-10">
+      {% for item in module %}
+          <h4>{{ item.course }}</h4>
+          {% for mod in item.course.cours.all %}
+              <p class="d-inline-flex gap-1 mt-2">
+                  <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample{{ mod.id }}" role="button" aria-expanded="false" aria-controls="multiCollapseExample{{ mod.id }}">{{ mod.name }}</a>
+              </p>
+              <div class="row">
+                  <div class="col">
+                      <div class="collapse multi-collapse" id="multiCollapseExample{{ mod.id }}">
+                          <div class="card card-body">
+                              {% for lesson in mod.lessons.all %}
+                                  <p>{{ forloop.counter }}-Урок: {{ lesson.name }}</p>
+                                  <p>
+                                      {% if lesson.files %}
+                                          <a href="{{ lesson.files.url }}" download="{{ lesson.files.name }}files.png">{{ lesson.files.name }}</a>
+                                      {% else %}
+                                          No file available
+                                      {% endif %}
+                                  </p>
+                                  <p>
+                                      {% if lesson.videos %}
+                                          <a href="{{ lesson.videos.url }}" download="{{ lesson.videos.name }}videos.png">{{ lesson.videos.name }}</a>
+                                      {% else %}
+                                          No video available
+                                      {% endif %}
+                                  </p>
+                              {% endfor %}
+                              <a href="{% url 'test_student' mod.id %}" class="btn btn-primary">Начать тест</a>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
           {% endfor %}
-        {% endfor %}
-    </div>
+      {% endfor %}
+  </div>
 </div>
+
 
 
 
